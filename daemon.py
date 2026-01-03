@@ -38,10 +38,9 @@ def main() -> None:
 
             if message == b"status":
                 client.send((round(time() * 1000) - boot_time).to_bytes(4, "big"))
-                ack = client.recv(3)
                 client.close()
             elif message == b"stop":
-                client.send(b"ACK")
+                client.send(b"OK")
                 client.close()
                 server.close()
                 break
