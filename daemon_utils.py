@@ -51,6 +51,5 @@ def get_daemon_status() -> int | None:
 
     client.send(b"status")
     status = client.recv(4)
-    client.send(b"ACK")
     client.close()
     return int.from_bytes(status, "big")
