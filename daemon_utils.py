@@ -26,7 +26,9 @@ def stop_daemon() -> None:
     client.connect(("127.0.0.1", 8669))
 
     client.send(b"stop")
-    ack = client.recv(3)
+    ack = client.recv(2)
+    if ack != b'OK':
+        raise Exception(f'Unexpected response: {ack}')
     client.close()
 
 def daemon_is_running() -> bool:
